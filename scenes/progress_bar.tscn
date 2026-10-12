@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dcov3oinsy10v"]
+
+[ext_resource type="Script" uid="uid://c8qag4yeg8bio" path="res://scenes/progress_bar.gd" id="1_vt3ux"]
+
+[sub_resource type="Gradient" id="Gradient_vt3ux"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1iuoo"]
+gradient = SubResource("Gradient_vt3ux")
+
+[sub_resource type="Gradient" id="Gradient_8un81"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 1, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tumid"]
+gradient = SubResource("Gradient_8un81")
+
+[node name="TargetProgressBar" type="Node2D" unique_id=842557572]
+script = ExtResource("1_vt3ux")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=772431119]
+offset_right = 64.0
+offset_bottom = 64.0
+texture_under = SubResource("GradientTexture2D_1iuoo")
+texture_progress = SubResource("GradientTexture2D_tumid")
+
+[node name="ColorRect" type="ColorRect" parent="TextureProgressBar" unique_id=1964015974]
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 64.0
+color = Color(0.033853278, 0.033853278, 0.033853274, 1)
