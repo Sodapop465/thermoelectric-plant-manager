@@ -143,7 +143,7 @@ script = ExtResource("6_0tnpc")
 target_bar_level = 72
 target_bar_color = Color(0, 0, 1, 1)
 bar_background_color = Color(1, 1, 1, 1)
-bar_progress_color = Color(1, 1, 0, 1)
+bar_progress_color = Color(1, 0.88235295, 0, 1)
 
 [node name="HeatBar" type="Label" parent="." unique_id=1848130008]
 offset_left = 137.0

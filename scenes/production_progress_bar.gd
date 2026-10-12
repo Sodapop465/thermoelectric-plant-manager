@@ -1,6 +1,7 @@
 extends "res://scenes/progress_bar.gd"
 
 func _ready():
+	super._ready()
 	set_target_visibility(true)
 	set_target_level(80)
 	
@@ -8,5 +9,5 @@ func _ready():
 func _process(delta: float) -> void:
 	# Update UI based on GameState
 	progress_bar.value = GameState.elec_prod
-	
+	super.set_target_level(GameState.demand)
 	

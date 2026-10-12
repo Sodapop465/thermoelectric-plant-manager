@@ -29,9 +29,6 @@ func _ready():
 	target_bar.visible = target_bar_visiblity
 	set_target_level(target_bar_level)
 	
-	print(progress_gradient.gradient.get_instance_id())
-	print(under_gradient.gradient.get_instance_id())
-	
 
 # Sets the target bar level
 # Range: 0-100
