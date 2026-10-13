@@ -1,0 +1,132 @@
+[gd_scene format=4 uid="uid://qqf4bq33odni"]
+
+[ext_resource type="Script" uid="uid://dbrfv3p1bei6m" path="res://scenes/background.gd" id="1_4826q"]
+[ext_resource type="Texture2D" uid="uid://igbdn17sxmqd" path="res://textures/tiles/ground.png" id="2_531e2"]
+[ext_resource type="FontFile" uid="uid://bh824jt6t80p1" path="res://fonts/Tiny5-Regular.ttf" id="3_d70ak"]
+[ext_resource type="Script" uid="uid://ca83q4uqggvub" path="res://scenes/score.gd" id="4_531e2"]
+[ext_resource type="Texture2D" uid="uid://kj65uuw6gv77" path="res://textures/air_icon.png" id="4_woh6y"]
+[ext_resource type="Script" uid="uid://c5r4vhq08pq48" path="res://scenes/start_button.gd" id="5_rx2gv"]
+[ext_resource type="Texture2D" uid="uid://cdj37kh0bnv5u" path="res://textures/Power Plant.png" id="6_doh3d"]
+[ext_resource type="Texture2D" uid="uid://b0tkrw5lupp2o" path="res://textures/air_cooler.png" id="7_ir6vj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
+texture = ExtResource("2_531e2")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0iomv"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ge6i"]
+font = ExtResource("3_d70ak")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_4826q"]
+font = ExtResource("3_d70ak")
+font_size = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_531e2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.40784314, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d70ak"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.7647059, 0.32156864, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_woh6y"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.5411765, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 1
+
+[node name="Node2D" type="Node2D" unique_id=2045829441]
+
+[node name="Background" type="ColorRect" parent="." unique_id=581355781]
+offset_left = -261.0
+offset_top = -201.0
+offset_right = 245.0
+offset_bottom = 161.0
+color = Color(0.460477, 0.87485194, 0.9999998, 1)
+script = ExtResource("1_4826q")
+day_color = Color(0.45882353, 0.8745098, 1, 1)
+night_color = Color(0, 0.008461753, 0.15221906, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=353624585]
+tile_map_data = PackedByteArray("AAD7/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAD7/wAAAAAAAAEAAAD8/wAAAAAAAAEAAAD9/wAAAAAAAAEAAAD+/wAAAAAAAAEAAAD//wAAAAAAAAEAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAEAAAACAAAAAAAAAAEAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAEAAAD6/wAAAAAAAAEAAAD5/wAAAAAAAAEAAAAFAAAAAAAAAAEAAAAGAAAAAAAAAAEAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAAAAAACAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAD//wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wUAAAAAAAAAAAD7/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wUAAAAAAAAAAAD+/wUAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAD5/wUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0iomv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2059162567]
+position = Vector2(0, -65.59)
+
+[node name="Title" type="Label" parent="." unique_id=771954244]
+offset_left = -93.0
+offset_top = -160.0
+offset_right = 98.0
+offset_bottom = -87.0
+text = "You Win!
+"
+label_settings = SubResource("LabelSettings_4ge6i")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="." unique_id=1018631422]
+offset_left = -95.0
+offset_top = -121.0
+offset_right = 96.0
+offset_bottom = -66.0
+text = "Water Used: 100000000
+"
+label_settings = SubResource("LabelSettings_4826q")
+horizontal_alignment = 1
+script = ExtResource("4_531e2")
+
+[node name="StartButton" type="Button" parent="." unique_id=1433246290]
+offset_left = -39.0
+offset_top = -56.0
+offset_right = 41.0
+offset_bottom = -30.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_d70ak")
+theme_override_styles/normal = SubResource("StyleBoxFlat_531e2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d70ak")
+theme_override_styles/hover = SubResource("StyleBoxFlat_woh6y")
+text = "Restart"
+icon = ExtResource("4_woh6y")
+script = ExtResource("5_rx2gv")
+
+[node name="Plant" type="TextureRect" parent="." unique_id=1980933744]
+offset_left = 10.0
+offset_top = -40.0
+offset_right = 50.0
+texture = ExtResource("6_doh3d")
+
+[node name="AirCoolers" type="Node2D" parent="." unique_id=1274144148]
+
+[node name="Sprite2D" type="Sprite2D" parent="AirCoolers" unique_id=277873023]
+position = Vector2(-14, -16)
+texture = ExtResource("7_ir6vj")

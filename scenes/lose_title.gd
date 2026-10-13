@@ -1,7 +1,7 @@
 extends Label
 
 @export_multiline var lose_heat_text: String
-@export_multiline() var lose_demand_text: String
+@export_multiline var lose_demand_text: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
