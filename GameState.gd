@@ -3,16 +3,17 @@ extends Node
 # Math variables
 const DELTA_PRODUCTION = 8	# Change in production
 const UNMET_DEMAND_LEEWAY = 2 # Game hours
-var AIR_COOLING_FACTOR = 0.01
-var WATER_COOLING_FACTOR = 0.03
-var ELEC_PROD_HEAT_FACTOR = 0.05
+var DEFAULT_AIR_COOLING_FACTOR = 0.01
+var DEFAULT_WATER_COOLING_FACTOR = 0.03
+var DEFAULT_ELEC_PROD_HEAT_FACTOR = 0.05
 
 # Global Game State
 enum States {
 	START,
 	RUNNING,
 	LOSE_HEAT,
-	LOSE_DEMAND
+	LOSE_DEMAND,
+	WIN
 }
 var _current_state = States.START
 signal state_changed(value)
@@ -26,10 +27,13 @@ var day = 0
 var gen_effort = 0
 var air_cooling = 0
 var water_cooling = 0
+var air_cooling_factor = 0
+var water_cooling_factor = 0
 
 # Plant Production
 var elec_prod = 0
 var heat = 0
+var elec_prod_heat_factor = 0
 
 # Plant Demand
 var demand = 0
@@ -40,20 +44,50 @@ func change_state(state: States):
 	print("Changing global state to: ", States.find_key(_current_state))
 	_current_state = state
 	state_changed.emit(state)
+	
+	# Reset game when changing to running state
+	if state == States.RUNNING:
+		_reset_game()
+	
+	# Change to end scene
+	if state == States.LOSE_HEAT or state == States.LOSE_DEMAND:
+		get_tree().change_scene_to_file("res://scenes/lose.tscn")
 
 func get_state() -> States:
 	return _current_state
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_update_time(delta)
-	_update_demand()
-	_update_electricity_production(delta)
-	_update_heat(delta)
+	# Run the main game
+	if get_state() == States.RUNNING:
+		_update_time(delta)
+		_update_demand()
+		_update_electricity_production(delta)
+		_update_heat(delta)
+
+func _reset_game() -> void:
+	air_cooling_factor = DEFAULT_AIR_COOLING_FACTOR
+	water_cooling_factor = DEFAULT_WATER_COOLING_FACTOR
+	elec_prod_heat_factor = DEFAULT_ELEC_PROD_HEAT_FACTOR
+
+	# Game time in 24:00
+	time_minutes = 0
+	time_hour = 0
+	day = 0
+
+	# User sliders
+	gen_effort = 0
+	air_cooling = 0
+	water_cooling = 0
+
+	# Plant Production
+	elec_prod = 0
+	heat = 0
+
+	# Plant Demand
+	demand = 0
+	time_last_met_demand = time_hour + (time_minutes / 60.0)
 	
-	# Check if heat is above 100
-	if heat > 100:
-		change_state(States.LOSE_HEAT)
 
 # Update the time Make one day ~150 seconds (3 min)
 func _update_time(delta: float) -> void:
@@ -66,6 +100,9 @@ func _update_time(delta: float) -> void:
 	if time_hour >= 24:
 		time_hour = 0
 		day += 1
+	# If player survives for 2 days, they win
+	if day == 2:
+		change_state(States.WIN)
 
 
 # Simulates electricity demand based on time of day
@@ -107,8 +144,12 @@ func _update_electricity_production(delta: float) -> void:
 
 # Calculate heat based on electricity production
 func _update_heat(delta: float) -> void:
-	heat += elec_prod * ELEC_PROD_HEAT_FACTOR
-	heat -= air_cooling * AIR_COOLING_FACTOR
-	heat -= water_cooling * WATER_COOLING_FACTOR
+	heat += elec_prod * elec_prod_heat_factor
+	heat -= air_cooling * air_cooling_factor
+	heat -= water_cooling * water_cooling_factor
 	if heat < 0:
 		heat = 0
+		
+	# Check if heat is above 100
+	if heat > 100:
+		change_state(States.LOSE_HEAT)

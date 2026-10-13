@@ -1,0 +1,81 @@
+[gd_scene format=4 uid="uid://b2xdfvl7ky2e8"]
+
+[ext_resource type="Script" uid="uid://dbrfv3p1bei6m" path="res://scenes/background.gd" id="1_r44po"]
+[ext_resource type="Texture2D" uid="uid://igbdn17sxmqd" path="res://textures/tiles/ground.png" id="2_yj0ov"]
+[ext_resource type="FontFile" uid="uid://bh824jt6t80p1" path="res://fonts/Tiny5-Regular.ttf" id="3_sgf0w"]
+[ext_resource type="Texture2D" uid="uid://kj65uuw6gv77" path="res://textures/air_icon.png" id="4_8o1j8"]
+[ext_resource type="Script" uid="uid://b5reqr7m8wofu" path="res://scenes/lose_title.gd" id="4_yj0ov"]
+[ext_resource type="Script" uid="uid://c5r4vhq08pq48" path="res://scenes/start_button.gd" id="5_gwg4l"]
+[ext_resource type="Texture2D" uid="uid://cdj37kh0bnv5u" path="res://textures/Power Plant.png" id="6_xj04v"]
+[ext_resource type="Texture2D" uid="uid://b0tkrw5lupp2o" path="res://textures/air_cooler.png" id="7_5b52j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
+texture = ExtResource("2_yj0ov")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0iomv"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_yqjtg")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ge6i"]
+font = ExtResource("3_sgf0w")
+font_size = 30
+
+[node name="Node2D" type="Node2D" unique_id=2045829441]
+
+[node name="Background" type="ColorRect" parent="." unique_id=581355781]
+offset_left = -261.0
+offset_top = -201.0
+offset_right = 245.0
+offset_bottom = 161.0
+color = Color(0.460477, 0.87485194, 0.9999998, 1)
+script = ExtResource("1_r44po")
+day_color = Color(0.45882353, 0.8745098, 1, 1)
+night_color = Color(0, 0.008461753, 0.15221906, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=353624585]
+tile_map_data = PackedByteArray("AAD7/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAADAAIAAAAAAAAAAAACAAIAAAAAAAAAAAABAAIAAAAAAAAAAAAAAAIAAAAAAAAAAAD//wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD8/wIAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD8/wMAAAAAAAAAAAD9/wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAIAAAAAAAAAAAAEAAEAAAAAAAAAAAD7/wAAAAAAAAEAAAD8/wAAAAAAAAEAAAD9/wAAAAAAAAEAAAD+/wAAAAAAAAEAAAD//wAAAAAAAAEAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAEAAAACAAAAAAAAAAEAAAADAAAAAAAAAAEAAAAEAAAAAAAAAAEAAAD6/wAAAAAAAAEAAAD5/wAAAAAAAAEAAAAFAAAAAAAAAAEAAAAGAAAAAAAAAAEAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAAAAAACAAQAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAIAAAAAAAAAAAABAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAD//wQAAAAAAAAAAAD+/wQAAAAAAAAAAAD9/wQAAAAAAAAAAAD8/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD6/wQAAAAAAAAAAAD5/wQAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wEAAAAAAAAAAAD6/wEAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wUAAAAAAAAAAAD7/wUAAAAAAAAAAAD8/wUAAAAAAAAAAAD9/wUAAAAAAAAAAAD+/wUAAAAAAAAAAAD//wUAAAAAAAAAAAAAAAUAAAAAAAAAAAABAAUAAAAAAAAAAAACAAUAAAAAAAAAAAADAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAD5/wUAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_0iomv")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2059162567]
+position = Vector2(0, -65.59)
+zoom = Vector2(2.685, 2.685)
+
+[node name="LoseTitle" type="Label" parent="." unique_id=771954244]
+offset_left = -213.0
+offset_top = -171.0
+offset_right = 213.0
+offset_bottom = -129.0
+label_settings = SubResource("LabelSettings_4ge6i")
+horizontal_alignment = 1
+script = ExtResource("4_yj0ov")
+lose_heat_text = "Oh no! 
+Too much heat built up 
+and your plant melted!"
+lose_demand_text = "Sorry, you didn't meet demand"
+
+[node name="StartButton" type="Button" parent="." unique_id=1467754532]
+offset_left = -39.0
+offset_top = -53.0
+offset_right = 41.0
+offset_bottom = -27.0
+theme_override_fonts/font = ExtResource("3_sgf0w")
+text = "Restart"
+icon = ExtResource("4_8o1j8")
+script = ExtResource("5_gwg4l")
+
+[node name="Plant" type="TextureRect" parent="." unique_id=1980933744]
+offset_left = 10.0
+offset_top = -40.0
+offset_right = 50.0
+texture = ExtResource("6_xj04v")
+
+[node name="AirCoolers" type="Node2D" parent="." unique_id=1274144148]
+
+[node name="Sprite2D" type="Sprite2D" parent="AirCoolers" unique_id=277873023]
+position = Vector2(-14, -16)
+texture = ExtResource("7_5b52j")
