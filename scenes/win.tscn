@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://igbdn17sxmqd" path="res://textures/tiles/ground.png" id="2_531e2"]
 [ext_resource type="FontFile" uid="uid://bh824jt6t80p1" path="res://fonts/Tiny5-Regular.ttf" id="3_d70ak"]
 [ext_resource type="Script" uid="uid://ca83q4uqggvub" path="res://scenes/score.gd" id="4_531e2"]
+[ext_resource type="Script" uid="uid://byqkfa13idak8" path="res://scenes/water_used.gd" id="4_d70ak"]
 [ext_resource type="Texture2D" uid="uid://kj65uuw6gv77" path="res://textures/air_icon.png" id="4_woh6y"]
 [ext_resource type="Script" uid="uid://c5r4vhq08pq48" path="res://scenes/start_button.gd" id="5_rx2gv"]
 [ext_resource type="Texture2D" uid="uid://cdj37kh0bnv5u" path="res://textures/Power Plant.png" id="6_doh3d"]
@@ -28,6 +29,10 @@ font_size = 30
 [sub_resource type="LabelSettings" id="LabelSettings_4826q"]
 font = ExtResource("3_d70ak")
 font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_d70ak"]
+font = ExtResource("3_d70ak")
+font_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_531e2"]
 content_margin_left = 4.0
@@ -99,11 +104,22 @@ offset_left = -95.0
 offset_top = -121.0
 offset_right = 96.0
 offset_bottom = -66.0
-text = "Water Used: 100000000
+text = "Score: 100000000
 "
 label_settings = SubResource("LabelSettings_4826q")
 horizontal_alignment = 1
 script = ExtResource("4_531e2")
+
+[node name="WaterUsed" type="Label" parent="." unique_id=928271136]
+offset_left = -109.0
+offset_top = -93.0
+offset_right = 109.0
+offset_bottom = -62.0
+text = "Water Used: 120,000,000 gallons
+"
+label_settings = SubResource("LabelSettings_d70ak")
+horizontal_alignment = 1
+script = ExtResource("4_d70ak")
 
 [node name="StartButton" type="Button" parent="." unique_id=1433246290]
 offset_left = -39.0

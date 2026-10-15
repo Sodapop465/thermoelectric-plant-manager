@@ -8,4 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	self.text = "Score: %d" % (36000 - GameState.water_used)
+	# Based on 60 million gallons used per day estimate
+	self.text = "Score: %d" % ((36000 - GameState.water_used))
